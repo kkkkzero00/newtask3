@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<ul id="myLinks">
+			<li id="aa">aa</li>
+			<li id="bb">bb</li>
+			<li id="cc">cc</li>
+		</ul>
+	</div>
+	<div id="myDiv"><input type="button" value="Click me" id="myBtn"></div>
+
+	<script type="text/javascript">
+		var link = document.getElementById("myLinks")
+		var childNodes = link.childNodes
+		//第一个其实是空白文本节点
+		console.log(childNodes.item(0))
+		console.log(childNodes.item(1))
+
+		/*将Node获得的节点转换为数组,不转换就只能是nodeList对象*/
+		//IE以外的浏览器
+		var arrayOfNodes = Array.prototype.slice.call(childNodes,0)
+		console.log(childNodes)
+		console.log(arrayOfNodes)
+		//跨浏览器解决方案
+		function convertToArray(nodes){
+			var array = null
+			try{
+				//非IE
+				array = Array.prototype.slice.call(nodes,0)
+			}catch(ex){
+				array = new Array()
+				for(var i=0,len=nodes.length;i<len;i++)
+					array.push(nodes[i])
+			}
+			return array
+		}
+
+		
+	</script>
+</body>
+</html>

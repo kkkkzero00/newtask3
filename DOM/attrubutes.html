@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="myDiv" class="myClass" data-tips="tips">jhkjk</div>
+</body>
+<script type="text/javascript">
+	var elem = document.getElementById("myDiv")
+	var id =  elem.attributes["id"].nodeValue
+	console.log(id)
+
+	elem.attributes["id"].nodeValue = "id2"
+	/*移除属性*/
+	var removeAttr = elem.attributes.removeNamedItem("id")
+	console.log(removeAttr)
+	/*遍历属性*/
+	function outputAttributes(element){
+		var pairs = new Array(),attrName,attrValue,i,len;
+		for(i=0,len=element.attributes.length;i<len;i++){
+			attrName = element.attributes[i].nodeName
+			attrValue = element.attributes[i].nodeValue
+			pairs.push(attrName + '=\"'+attrValue+'\"')
+		}
+
+		return pairs.join(" ")
+	}
+	var attrArr = outputAttributes(elem)
+	console.log(attrArr)
+</script>
+</html>
